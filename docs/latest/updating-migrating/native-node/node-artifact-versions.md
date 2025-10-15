@@ -26,7 +26,7 @@ History of all-in-one installer updates simultaneously applies to it's x86_64 an
 
     * Fixed an issue where the `go-node` process could segfault in production environments
     * Fixed an issue where response context parameters configured in [API Sessions](../../api-sessions/setup.md) were not uploaded to the Wallarm Cloud
-    * Fixed an issue where the [`remote_addr`](../../user-guides/rules/request-processing.md#ip-address-of-a-request-origin) point for the Native Node did not use the string format, unlike the NGINX Node.
+    * Fixed an issue with incorrect [`remote_addr`](../../user-guides/rules/request-processing.md#ip-address-of-a-request-origin) parsing
 
 ### 0.18.0 (2025-09-17)
 
@@ -133,18 +133,18 @@ The Helm chart for the Native Node is used for self-hosted node deployments with
 * Added support for [blocking attackers by session ID](../../api-sessions/blocking.md)
 * Added [multitenancy support](../../installation/multi-tenant/overview.md)
 * Changed the default **wstore** binding to IPv4 (`tcp4`), it now listens only on IPv4 instead of dual‑stack
-* Introduced protocol selection (tcp, tcp4, tcp6) in Ingress values ([`config.aggregation.serviceProtocol`](../../installation/native-node/helm-chart-conf.md#configaggregationserviceprotocol))
+* Introduced the protocol selection (tcp, tcp4, tcp6) configuration parameter: [`config.aggregation.serviceProtocol`](../../installation/native-node/helm-chart-conf.md#configaggregationserviceprotocol) 
 
     The default value is `"tcp4"`.
 * Relaxed content-type validation in [API Specification Enforcement](../../api-specification-enforcement/overview.md): requests with image MIME types (`image/png`, `image/jpeg`, `image/gif`, `image/webp`, `image/avif`, `image/heic`, `image/heif`, `image/bmp`, `image/tiff`, `image/svg+xml`) are no longer rejected
 * Bumped Go version to 1.24
+* Set the default value for `config.connector.per_connection_limits.max_duration` to 1m (1 minute)
 * Bug fixes:
 
-    * Fixed the issue where the `go-node` process could segfault in production environments
+    * Fixed an issue where the `go-node` process could segfault in production environments
     * Fixed an issue where response context parameters configured in [API Sessions](../../api-sessions/setup.md) were not uploaded to the Wallarm Cloud
-    * Fixed an issue where the [`remote_addr`](../../user-guides/rules/request-processing.md#ip-address-of-a-request-origin) point for the Native Node did not use the string format, unlike the NGINX Node.
-    * Fixed the issue where processing affinity was not applied correctly in the Native Node Helm chart
-    * Fixed the issue where `config.connector.per_connection_limits` in the Native Node Helm chart did not have a default value. A default value of `max_duration: 1m` is now set.
+    * Fixed an issue with incorrect [remote_addr](../../user-guides/rules/request-processing.md#ip-address-of-a-request-origin) parsing
+    * Fixed an issue where processing affinity was not applied correctly in the Native Node Helm chart
 
 ### 0.18.0 (2025-09-17)
 
@@ -258,9 +258,9 @@ The Docker image for the Native Node is used for self-hosted node deployment wit
 
 * Bug fixes:
 
-    * Fixed the issue where the `go-node` process could segfault in production environments
+    * Fixed an issue where the `go-node` process could segfault in production environments
     * Fixed an issue where response context parameters configured in [API Sessions](../../api-sessions/setup.md) were not uploaded to the Wallarm Cloud    
-    * Fixed an issue where the [`remote_addr`](../../user-guides/rules/request-processing.md#ip-address-of-a-request-origin) point for the Native Node did not use the string format, unlike the NGINX Node.
+    * Fixed an issue with incorrect [remote_addr](../../user-guides/rules/request-processing.md#ip-address-of-a-request-origin) parsing
 
 ### 0.18.0 (2025-09-17)
 
