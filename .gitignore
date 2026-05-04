@@ -12,3 +12,8 @@ package-lock.json
 .idea/
 
 .cache
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
