@@ -1,0 +1,18 @@
+[project]
+name = "wallarm-docs-mcp"
+version = "0.1.0"
+description = "MCP server exposing the Wallarm product documentation to agents and humans."
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.2.0",
+]
+
+[project.scripts]
+wallarm-docs-mcp = "server:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["server"]
